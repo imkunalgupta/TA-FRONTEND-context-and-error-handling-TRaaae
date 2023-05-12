@@ -1,17 +1,22 @@
-import Banner from "./Banner";
-import Cards from "./Cards";
-import Paragraph from "./Paragraph";
-import Title from "./Title";
+import Banner from './Banner';
+import Cards from './Cards';
+import Paragraph from './Paragraph';
+import Title from './Title';
+import { UserContext } from './UserContext';
+import { useContext } from 'react';
 
-function Main({ isDarkMode }) {
+function Main() {
+  let mode = useContext(UserContext);
   return (
     <>
-      <Title text="Text Component" isDarkMode={isDarkMode} />
-      <Paragraph isDarkMode={isDarkMode} />
-      <Title text="Card Component" isDarkMode={isDarkMode} />
-      <Cards />
-      <Title text="Banner Component" isDarkMode={isDarkMode} />
-      <Banner isDarkMode={isDarkMode} />
+      <UserContext.Provider value={mode}>
+        <Title text="Text Component" />
+        <Paragraph />
+        <Title text="Card Component" />
+        <Cards />
+        <Title text="Banner Component" />
+        <Banner />
+      </UserContext.Provider>
     </>
   );
 }
